@@ -8,12 +8,12 @@ def my_rebalance(context,data):
     try:
         for stock in context.stocks:
             if stock == sid(45570):
-                order_target_percent(stock, -0.50)
+                order_target_percent(stock, -0.25)
             elif stock == sid(45571):
-                order_target_percent(stock, -0.50)
+                order_target_percent(stock, -0.25)
     except Exception as e:
         print(str(e))
 
 def record_vars(context,data):
-    record(JNUG=context.portfolio.positions[sid(45570)].amount*data.current(sid(45570),'price'),JDST=context.portfolio.positions[sid(45571)].amount*data.current(sid(45571))
+    #record(JNUG=context.portfolio.positions[sid(45570)].amount*data.current(sid(45570),'price'),JDST=context.portfolio.positions[sid(45571)].amount*data.current(sid(45571))
     record(Leverage=context.account.leverage)
