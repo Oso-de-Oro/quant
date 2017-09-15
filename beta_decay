@@ -1,0 +1,19 @@
+def initialize(context):
+    context.stocks = [sid(45570),sid(45571)]
+    set_commission(commission.PerShare(cost=0.014, min_trade_cost=1.4))
+    schedule_function(my_rebalance, date_rules.every_day(), time_rules.market_open(hours=1))
+    schedule_function(record_vars, date_rules.every_day(), time_rules.market_open(minutes=90))
+
+def my_rebalance(context,data):
+    try:
+        for stock in context.stocks:
+            if stock == sid(45570):
+                order_target_percent(stock, -0.50)
+            elif stock == sid(45571):
+                order_target_percent(stock, -0.50)
+    except Exception as e:
+        print(str(e))
+
+def record_vars(context,data):
+    record(JNUG=context.portfolio.positions[sid(45570)].amount*data.current(sid(45570),'price'),JDST=context.portfolio.positions[sid(45571)].amount*data.current(sid(45571))
+    record(Leverage=context.account.leverage)
