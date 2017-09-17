@@ -1,3 +1,9 @@
+"""
+Short algo that basically just takes advantage of the beta decay, or slippage, from a couple of 3x leveraged etfs. The 2 stocks it's
+trading here are JNUG and JDST, however, this could be used with any 3x or 2x pair where both gradually lose value over time. 
+The algo shorts an equal amount of your portfolio (25%) of both the stocks and rebalances every day. 
+It also accounts for commission, here it uses the commission of Interactive Brokers. 
+"""
 def initialize(context):
     context.stocks = [sid(45570),sid(45571)]
     set_commission(commission.PerShare(cost=0.014, min_trade_cost=1.4))
